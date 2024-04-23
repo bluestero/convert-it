@@ -1,0 +1,40 @@
+body {
+    background-color: #121212; /* Dark background color for the body */
+    color: #ffffff; /* White text color */
+}
+
+.title {
+    font-size: 100px;
+    margin-left: 20px;
+    font-family: 'Roboto', sans-serif; /* Use Roboto font */
+    font-weight: 700; /* Bold font weight */
+}
+
+.container {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.component {
+    border: 1px solid rgb(224, 224, 224);
+    display: inline-block;
+    margin-right: 30px;
+    padding: 30px;
+    border-radius: 15px;
+    background-color: #1f1f1f; /* Dark gray background color for components */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+.file-select {
+    margin-bottom: 20px;
+}
+
+.api-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
