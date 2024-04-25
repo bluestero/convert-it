@@ -149,13 +149,17 @@ function handleImageSelect() {
         // Checking if file size exceeds the given limit.
         if (file.size > imageSizeLimit) {
             showToast(`File size exceeds ${imageSizeLimit/1024/1024} MB: ${(file.size / (1024 * 1024)).toFixed(2)} MB`, "warning");
+            document.getElementById("convert-image").disabled = true;
             fileInput.value = "";
             return;
         }
 
+        handleSelector("image");
         showToast(`Selected file: ${file.name} (${(file.size / (1024 * 1024)).toFixed(2)} MB)`, "success");
+
     } else {
         showToast("Choose a file first.");
+        document.getElementById("convert-image").disabled = true;
     }
 }
 
@@ -172,13 +176,17 @@ function handleVideoSelect() {
         // Checking if file size exceeds the given limit.
         if (file.size > videoSizeLimit) {
             showToast(`File size exceeds ${videoSizeLimit/1024/1024} MB: ${(file.size / (1024 * 1024)).toFixed(2)} MB`, "warning");
+            document.getElementById("extract-audio").disabled = true;
             fileInput.value = "";
             return;
         }
 
+        handleSelector("audio");
         showToast(`Selected file: ${file.name} (${(file.size / (1024 * 1024)).toFixed(2)} MB)`, "success");
+
     } else {
         showToast("Choose a file first.");
+        document.getElementById("extract-audio").disabled = true;
     }
 }
 
@@ -186,19 +194,21 @@ function handleVideoSelect() {
 // Function to disable and enable the convert button.
 function handleSelector(type) {
 
-    let fileSelector = document.getElementById("image-format");
-    let convertButton = document.getElementById("convert-image")
+    let fileSelector = document.getElementById("image-file");
+    let formatSelector = document.getElementById("image-format");
+    let convertButton = document.getElementById("convert-image");
 
     if (type == "audio") {
         disableAudioDownload();
-        fileSelector = document.getElementById("audio-format");
+        fileSelector = document.getElementById("video-file");
+        formatSelector = document.getElementById("audio-format");
         convertButton = document.getElementById("extract-audio");
     } else {
         disableImageDownload();
     }
 
-    // Check if fileSelector has a value selected.
-    if (fileSelector.value != "default") {
+    // Check if formatSelector has a value selected.
+    if (formatSelector.value != "default" && fileSelector.value != "") {
         // If value is selected, enable the convertButton.
         convertButton.disabled = false;
     } else {
