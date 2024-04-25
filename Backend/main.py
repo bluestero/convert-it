@@ -3,8 +3,8 @@ import magic
 from PIL import Image
 from io import BytesIO
 from fastapi.responses import Response
-from fastapi.middleware.cors import CORSMiddleware
 from moviepy.editor import VideoFileClip
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 
 
@@ -41,7 +41,7 @@ def health_check():
 
 
 @app.post("/convert-image")
-async def convert_image(file: UploadFile = File(...), output_type: str = Form(None)):
+async def convert_image(file: UploadFile = File(...), output_type: str = Form(...)):
 
     if not file:
         raise HTTPException(status_code = 400, detail = "No file provided.")
