@@ -1,4 +1,3 @@
-from moviepy.editor import VideoFileClip, AudioFileClip
-
-audio = VideoFileClip("Test.mp4").audio
-print(audio.reader.read_chunk(10))
+import os
+import sys
+print(os.path.dirname(sys.executable))

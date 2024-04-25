@@ -1,11 +1,11 @@
 import os
 import magic
 from PIL import Image
-from io import BytesIO, StringIO
+from io import BytesIO
 from fastapi.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
-from moviepy.editor import VideoFileClip, AudioFileClip
-from fastapi import FastAPI, Body, File, Form, UploadFile, HTTPException
+from moviepy.editor import VideoFileClip
+from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 
 
 #-Base objects-#
@@ -62,14 +62,12 @@ async def convert_image(file: UploadFile = File(...), output_type: str = Form(No
     #-Image Processing-#
     image = Image.open(BytesIO(file_content))
     image.save(image_data, format = output_type)
-
     image_data.seek(0)
 
-    # return FileResponse(image_data, filename = output_file)
     return Response(
         content = image_data.read(),
         media_type = f"image/{output_type}",
-        headers = {"Content-Disposition": f"attachment;filename={output_file}"})
+        headers = {"Content-Language": output_file})
 
 
 @app.post("/extract-audio")
@@ -121,4 +119,4 @@ async def extract_audio(file: UploadFile = File(...), output_type: str = Form(No
     return Response(
         content = audio_data,
         media_type = f"audio/{output_type}",
-        headers = {"Content-Disposition": f"attachment;filename={output_file}"})
+        headers = {"Content-Language": output_file})
