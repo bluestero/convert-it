@@ -40,7 +40,7 @@ async function convertImage() {
 
     try {
         // Make POST request to convert image.
-        const response = await fetch("http://localhost:8000/convert-image", {
+        const response = await fetch("http://localhost:3000/convert-image", {
             method: "POST",
             body: formData
         });
@@ -97,7 +97,7 @@ async function extractAudio() {
     formData.append("output_type", outputType);
 
     try {
-        const response = await fetch("http://localhost:8000/extract-audio", {
+        const response = await fetch("http://localhost:3000/extract-audio", {
             method: "POST",
             body: formData
         });

@@ -2,22 +2,26 @@ import os
 import magic
 from PIL import Image
 from io import BytesIO
-from fastapi.responses import Response
 from moviepy.editor import VideoFileClip
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response, HTMLResponse
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 
 
-#-Base objects-#
-app = FastAPI()
+#-Supported formats-#
 supported_audio_formats = {'mp3', 'wav', 'ogg', 'flac'}
 supported_video_formats = {'mp4', 'avi', 'mov', 'mkv', 'wmv', 'flv'}
 supported_image_types = {"bmp", "gif", "ico", "jpeg", "png", "ppm", "tiff", "webp", "xbm", "xpm", "pdf"}
 
+#-Base objects-#
+app = FastAPI()
+app.mount("/static", StaticFiles(directory = "Webpage"), name="static")
+
 #-CORS configuration-#
 origins = [
     "http://localhost:3000",
-    "localhost:3000",
+    "http://localhost:3000/",
 ]
 
 app.add_middleware(
@@ -33,6 +37,13 @@ def get_output_name(filename: str, output_type: str) -> str:
 
     filename = os.path.splitext(filename)[0]
     return f"{filename}.{output_type}"
+
+
+@app.get("/")
+def health_check():
+    with open(os.path.join("Webpage", "index.html"), "r") as file:
+        html_content = file.read()
+    return HTMLResponse(content = html_content)
 
 
 @app.get("/health-check")
