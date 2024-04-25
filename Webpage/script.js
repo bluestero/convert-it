@@ -40,7 +40,7 @@ async function convertImage() {
 
     try {
         // Make POST request to convert image.
-        const response = await fetch("http://localhost:3000/convert-image", {
+        const response = await fetch(`//${location.host}/convert-image`, {
             method: "POST",
             body: formData
         });
@@ -97,7 +97,7 @@ async function extractAudio() {
     formData.append("output_type", outputType);
 
     try {
-        const response = await fetch("http://localhost:3000/extract-audio", {
+        const response = await fetch(`//${location.host}/extract-audio`, {
             method: "POST",
             body: formData
         });
@@ -218,6 +218,12 @@ function handleSelector(type) {
 }
 
 
+function titleClickHandler(element) {
+    const titleElement = document.getElementById(element);
+    titleElement.classList.toggle("background-toggle");
+}
+
+
 // OnLoad setup.
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -229,6 +235,10 @@ document.addEventListener("DOMContentLoaded", function(){
         element.value = "default";
     });
 
+    document.querySelectorAll('button').forEach(element => {
+        element.disabled = true;
+    });
+
     // Adding event listeners.
     document.getElementById("convert-image").addEventListener("click", convertImage);
     document.getElementById("download-image").addEventListener("click", downloadImage);
@@ -236,6 +246,8 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("download-audio").addEventListener("click", downloadAudio);
     document.getElementById("image-file").addEventListener("change", handleImageSelect);
     document.getElementById("video-file").addEventListener("change", handleVideoSelect);
-    document.getElementById("image-format").addEventListener("change", () => {handleSelector("image")});
-    document.getElementById("audio-format").addEventListener("change", () => {handleSelector("audio")});
+    document.getElementById("image-format").addEventListener("change", () => { handleSelector("image") });
+    document.getElementById("audio-format").addEventListener("change", () => { handleSelector("audio") });
+    document.getElementById("file-title").addEventListener("click", () => { titleClickHandler("file-title") });
+    document.getElementById("converter-title").addEventListener("click", () => { titleClickHandler("converter-title") });
 });

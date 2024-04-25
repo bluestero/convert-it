@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="title-container">
-        <span class="title">FILE</span>
-        <span class="title">CONVERTER</span>
+        <span class="title" id="file-title">FILE</span>
+        <span class="title" id="converter-title">CONVERTER</span>
     </div>
     <div class="container">
         <div class="component">
@@ -27,14 +27,14 @@
                 <option value="ppm">PPM</option>
                 <option value="tiff">TIFF</option>
                 <option value="webp">WEBP</option>
-                <option value="xbm">XBM</option>
-                <option value="xpm">XPM</option>
+                <!-- <option value="xbm">XBM</option> -->
+                <!-- <option value="xpm">XPM</option> -->
                 <option value="pdf">PDF</option>
             </select>
             <input type="file" class="file-select" accept="image/*" id="image-file">
             <button class="api-button" id="convert-image" disabled>Convert</button>
             <button class="api-button" id="download-image" disabled>Download</button>
-            <label class="supported-formats"><b>SUPPORTED FORMATS:</b></br>BMP, GIF, ICO, JPEG, PNG, PPM, TIFF, WEBP, XBM, XPM, PDF</label>
+            <label class="supported-formats"><b>SUPPORTED FORMATS:</b></br>BMP, GIF, ICO, JPEG, PNG, PPM, TIFF, WEBP, PDF</label>
         </div>
         <div class="component">
             <h2>Extract Audio</h2>

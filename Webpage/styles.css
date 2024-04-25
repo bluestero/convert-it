@@ -34,23 +34,29 @@ body {
 }
 
 .title {
+    width: min-content;
     font-size: 80px;;
     font-weight: 700;
-    /* color: transparent; */
-    /* position: relative; */
     -webkit-text-stroke: 3px rgb(230, 230, 230);
-    background: linear-gradient(#33354B, #33354B) left no-repeat, #D1D2DE;
+    background:  linear-gradient(#ffffff, #ffffff) left  no-repeat, #121212;
     background-size: 0% 100%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: 0.5s ease-in-out;
-
 }
 
-.title:hover {
+.title:hover { 
     background-size: 100% 100%;
-  }
+}
+
+.title.background-toggle {
+    background-size: 100% 0%;
+}
+
+.title:hover.background-toggle { 
+    background-size: 100% 100%;
+}
 
 .container {
     display: grid;
