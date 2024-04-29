@@ -1,4 +1,3 @@
-// SWITCH TO CONTENT-DISPOSITION.
 import { showToast, fillProgressCircle} from "./utils.js";
 import { animateCircles } from "./cursor.js";
 
@@ -158,12 +157,6 @@ async function extractAudio() {
 
         // Getting the response by sending the FormData along with the config.
         const response = await axios.post(`//${location.host}/extract-audio`, formData, config);
-        console.log("Response");
-        console.log(response);
-        console.log("Response Name");
-        console.log(response.name);
-        console.log("Response Headers");
-        console.log(...response.headers);
 
         // Processing the response if status is 200.
         if (response.status === 200) {
@@ -297,16 +290,16 @@ function titleClickHandler(element) {
 document.addEventListener("DOMContentLoaded", function(){
 
     // Clearing out elements' values.
-    // document.querySelectorAll('input').forEach(element => {
-    //     element.value = '';
-    // });
-    // document.querySelectorAll('select').forEach(element => {
-    //     element.value = "default";
-    // });
+    document.querySelectorAll('input').forEach(element => {
+        element.value = '';
+    });
+    document.querySelectorAll('select').forEach(element => {
+        element.value = "default";
+    });
 
-    // document.querySelectorAll('button').forEach(element => {
-    //     element.disabled = true;
-    // });
+    document.querySelectorAll('button').forEach(element => {
+        element.disabled = true;
+    });
 
     // Adding event listeners.
     animateCircles();

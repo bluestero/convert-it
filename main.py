@@ -145,14 +145,8 @@ async def extract_audio(bg: BackgroundTasks, file: UploadFile = File(...), outpu
         os.remove(temp_file)
         del video_clip, audio_clip
 
-    #-Opening the saved audio file-#
-    # with open(output_file, "rb") as file:
-    #     audio_data = file.read()
-
     #-Removing the audio file-#
     bg.add_task(lambda : os.remove(output_file))
-
-    # FileResponse.headers["Content-Language"] = output_file
 
     return FileResponse(
         path = output_file,
