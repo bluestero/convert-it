@@ -165,7 +165,7 @@ async function extractAudio() {
 
             // Saving the extracted audio data.
             extractedAudio = response.data;
-            audioName = decodeURI(response.headers.get("content-disposition").split("filename=").pop());
+            audioName = decodeURI(response.headers.get("content-disposition").split("filename=").pop().slice(1, -1));
 
             // Enabling the download button after successful audio extraction.
             setTimeout(() => {
@@ -188,7 +188,6 @@ async function extractAudio() {
         showToast(`An error occurred: ${error.message}`, "danger");
     }
 }
-
 
 
 // Function to download the extracted audio.
